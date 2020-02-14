@@ -3,4 +3,5 @@
 import uuid
 
 class BaseModel():
-	pass
+
+        id = None
