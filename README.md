@@ -20,5 +20,5 @@ README.md and AUTHORS|0. README, AUTHORS|Description Project and Authors github
 
 ## Author
 
-- Jose Luis Diaz C. [@joldiazch](https://twitter.com/joldiazch)
+- Jose Luis Diaz C. [@Joldiazch](https://twitter.com/joldiazch)
 - Juan David Restrepo Z. [@jdrestre](https://twitter.com/jdrestre)
