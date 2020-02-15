@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+""" import modules for set id and datetime """
 import uuid
 from datetime import datetime
 
