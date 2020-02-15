@@ -6,17 +6,30 @@ from datetime import datetime
 class BaseModel():
     """ BaseModel Class """
 
-    id = str(uuid.uuid4())
-    created_at = datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')
-    updated_at = datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')
+    def __init__(self, *args, **kwargs):
+
+        if kwargs:
+            for name_attr, value in kwargs.items():
+                if name_attr in ["created_at", "updated_at"]:
+                    setattr(self, name_attr, datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
+                elif name_attr != "__class__":
+                    setattr(self, name_attr, value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def save(self):
         """ save method """
-        updated_at = datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')
+        updated_at = datetime.now()
 
-    def to_dict(self):  
+    def to_dict(self):
         """ to_dict method """
-        return self.__dict__
+        dic = self.__dict__
+        dic ['__class__'] = self.__class__.__name__
+        dic ['created_at'] = self.created_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
+        dic ['updated_at'] = self.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
+        return dic
 
     def __str__(self):
         """ __str__ method """
