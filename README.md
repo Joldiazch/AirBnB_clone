@@ -10,13 +10,14 @@
 Project Command Iterpreter HolbertonBnB is a complete web application, integrating database storage from Back-End in a clone of AirBnB.
 
 The project currently only implements the back-end console.
+
 ![N|Solid](https://www.tecnofem.com/wp-content/uploads/2020/02/airbnb-map.png)
 
 
 ## Classes
 ---
    |BaseModel|FileStorage|User|State|City|Amenity|Place|Review|
----|---|---
+---|---|---|---|---|---|---|---|---|
 **Private class attributes**|  |__file_path, __objects
 **Public instance attributes**|id: string, created_at: datetime, updated_at: datetime|
 **Public instance methods**|save(self), to_dict(self)|all(self), new(self, obj), save(self), reload(self)
