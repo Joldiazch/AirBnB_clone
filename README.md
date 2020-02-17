@@ -11,16 +11,15 @@ Project Command Iterpreter HolbertonBnB is a complete web application, integrati
 
 The project currently only implements the back-end console.
 <p align="center">
-  <img src="https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUZGDONYM4%2F20200215%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200215T205054Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=8dbefa62ab63cf267e6683aba8c5594c8a41c0f98abe6b33d9ce0db82ad43b38">
+![N|Solid](https://www.tecnofem.com/wp-content/uploads/2020/02/airbnb-map.png)
 </p>
 
 
 ## Classes
 ---
-___|BaseModel|FileStorage
+   |BaseModel|FileStorage|User|State|City|Amenity|Place|Review|
 ---|---|---
-___|___|___
-**Private class attributes**| - |__file_path, __objects
+**Private class attributes**|  |__file_path, __objects
 **Public instance attributes**|id: string, created_at: datetime, updated_at: datetime|
 **Public instance methods**|save(self), to_dict(self)|all(self), new(self, obj), save(self), reload(self)
 
@@ -40,6 +39,62 @@ Concepts to learn in this project:
 
 ## How to start it
 
+### Storage :baggage_claim:
+
+The above classes are handled by the abstracted storage engine defined in the
+[FileStorage](./models/engine/file_storage.py) class.
+
+Every time the backend is initialized, HolbertonBnB instantiates an instance of `FileStorage` called `storage`. The `storage` object is loaded/re-loaded from 
+any class instances stored in the JSON file `file.json`. As class instances are created, updated, or deleted, the `storage` object is used to register corresponding changes in the `file.json`.
+
+### Console :computer:
+
+The console is a command line interpreter that permits management of the backend of HolbertonBnB. It can be used to handle and manipulate all classes utilized by the application (achieved by calls on the `storage` object defined above).
+
+### Using the Console
+
+The HolbertonBnB console can be run both interactively and non-interactively.
+To run the console in non-interactive mode, pipe any command(s) into an execution of the file `console.py` at the command line.
+
+```
+$ echo "help" | ./console.py
+(hbnb)
+Documented commands (type help <topic>):
+========================================
+EOF  all  count  create  destroy  help  quit  show  update
+
+(hbnb)
+$
+```
+
+Alternatively, to use the HolbertonBnB console in interactive mode, run the file `console.py` by itself:
+
+```
+$ ./console.py
+```
+
+While running in interactive mode, the console displays a prompt for input:
+
+```
+$ ./console.py
+(hbnb)
+```
+
+To quit the console, enter the command `quit`, or input an EOF signal
+(`ctrl-D`).
+
+```
+$ ./console.py
+(hbnb) quit
+$
+```
+
+```
+$ ./console.py
+(hbnb) EOF
+$
+```
+
 ## How to use it
 
 ## Examples
@@ -49,6 +104,14 @@ Concepts to learn in this project:
 File Name|Task Name|Task Description
 ---|---|---
 README.md and AUTHORS|0. README, AUTHORS|Description Project and Authors github
+AirBnB_clone|1. Be PEP8 compliant!|Check all files with PEP8
+tests/|2. Unittests|All files, classes, functions must be tested with unit tests
+models/base_model.py, models/__init__.py, tests/|3. BaseModel|Start with BaseModel: Write a class BaseModel that defines all common attributes/methods for other classes
+models/base_model.py, tests/|4. Create BaseModel from dictionary|Now it’s time to re-create an instance with this dictionary representation.
+models/engine/file_storage.py, models/engine/__init__.py, models/__init__.py, models/base_model.py, tests/|5. Store first object|recreate a BaseModel from another one by using a dictionary representation
+console.py|6. Console 0.0.1|contains the entry point of the command interpreter cmd
+console.py|7. Console 0.1|Update your command interpreter with someone commands: create, show, destroy, all and update
+
 
 ## Author
 
