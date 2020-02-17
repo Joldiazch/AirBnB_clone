@@ -10,9 +10,7 @@
 Project Command Iterpreter HolbertonBnB is a complete web application, integrating database storage from Back-End in a clone of AirBnB.
 
 The project currently only implements the back-end console.
-<p align="center">
 ![N|Solid](https://www.tecnofem.com/wp-content/uploads/2020/02/airbnb-map.png)
-</p>
 
 
 ## Classes
