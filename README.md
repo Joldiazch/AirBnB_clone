@@ -17,10 +17,10 @@ The project currently only implements the back-end console.
 ## Classes
 ---
    |BaseModel|FileStorage|User|State|City|Amenity|Place|Review|
----|---|---|---|---|---|---|---|---|
-**Private class attributes**|  |__file_path, __objects
+---|---|---|---|---|---|---|---|---|---
+**Private class attributes**|  |__file_path, __objects|
 **Public instance attributes**|id: string, created_at: datetime, updated_at: datetime|
-**Public instance methods**|save(self), to_dict(self)|all(self), new(self, obj), save(self), reload(self)
+**Public instance methods**|save(self), to_dict(self)|all(self), new(self, obj), save(self), reload(self)|
 
 ### General
 Concepts to learn in this project:
