@@ -13,15 +13,16 @@ The project currently only implements the back-end console.
 
 ![N|Solid](https://www.tecnofem.com/wp-content/uploads/2020/02/airbnb-map.png)
 
-
-## Classes
 ---
-   |BaseModel|FileStorage|User|State|City|Amenity|Place|Review|
----|---|---|---|---|---|---|---|---|---
-**Private class attributes**|  |__file_path, __objects|
-**Public instance attributes**|id: string, created_at: datetime, updated_at: datetime|
-**Public instance methods**|save(self), to_dict(self)|all(self), new(self, obj), save(self), reload(self)|
+## Classes
+|     | BaseModel | FileStorage | User | State | City | Amenity | Place | Review |
+| --- | --------- | ----------- | -----| ----- | -----| ------- | ----- | ------ |
+| **PUBLIC INSTANCE ATTRIBUTES** | `id`<br>`created_at`<br>`updated_at` | | Inherits from `BaseModel` | Inherits from `BaseModel` | Inherits from `BaseModel` | Inherits from `BaseModel` | Inherits from `BaseModel` | Inherits from `BaseModel` |
+| **PUBLIC INSTANCE METHODS** | `save`<br>`to_dict` | `all`<br>`new`<br>`save`<br>`reload` | "" | "" | "" | "" | "" | "" |
+| **PUBLIC CLASS ATTRIBUTES** | | | `email`<br>`password`<br>`first_name`<br>`last_name`| `name` | `state_id`<br>`name` | `name` | `city_id`<br>`user_id`<br>`name`<br>`description`<br>`number_rooms`<br>`number_bathrooms`<br>`max_guest`<br>`price_by_night`<br>`latitude`<br>`longitude`<br>`amenity_ids` | `place_id`<br>`user_id`<br>`text` | 
+| **PRIVATE CLASS ATTRIBUTES** | | `file_path`<br>`objects` | | | | | | |
 
+---
 ### General
 Concepts to learn in this project:
 
@@ -49,6 +50,8 @@ any class instances stored in the JSON file `file.json`. As class instances are 
 ### Console :computer:
 
 The console is a command line interpreter that permits management of the backend of HolbertonBnB. It can be used to handle and manipulate all classes utilized by the application (achieved by calls on the `storage` object defined above).
+
+## How to use it
 
 ### Using the Console
 
@@ -93,8 +96,6 @@ $ ./console.py
 (hbnb) EOF
 $
 ```
-
-## How to use it
 
 ## Examples
 
