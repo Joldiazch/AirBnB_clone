@@ -123,7 +123,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """ EOF SystemExiit """
-        raise SystemExit
+        print("")
+        return True
 
 
 if __name__ == '__main__':
