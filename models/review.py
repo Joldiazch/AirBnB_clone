@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Define Review option"""
 
-
 from models.base_model import BaseModel
 
 
