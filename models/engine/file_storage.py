@@ -2,6 +2,7 @@
 """Contain the class FileStorage"""
 from models.base_model import BaseModel
 import json
+from models.user import User
 
 class FileStorage():
 	""" FileStorage Class """
@@ -27,9 +28,9 @@ class FileStorage():
 		try:
 			with open(self.__file_path, mode='r', encoding='utf-8') as f:
 				all_objs = json.loads(f.read())
-			for obj_id in all_objs.keys():
-				obj = all_objs[obj_id]
-				self.new(BaseModel(**obj))
+			for obj_id, obj in all_objs.items():
+				name_class = obj_id.split(".")[0]
+				self.new(eval(name_class + "(**obj)"))
 		except:
 			pass
 

@@ -23,7 +23,7 @@ class BaseModel():
 
     def save(self):
         """ save method """
-        updated_at = datetime.now()
+        self.updated_at = datetime.now()
         models.storage.save()
 
 
@@ -39,4 +39,4 @@ class BaseModel():
         """ __str__ method """
         msg = "[{}] ({}) {}"
         return msg.format(self.__class__.__name__, self.id, self.__dict__)
-        
+
