@@ -14,7 +14,9 @@ class BaseModel():
         if bool(kwargs):
             for name_attr, value in kwargs.items():
                 if name_attr in ["created_at", "updated_at"]:
-                    setattr(self, name_attr, datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
+                    setattr(self,
+                            name_attr,
+                            datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
                 elif name_attr != "__class__":
                     setattr(self, name_attr, value)
         else:

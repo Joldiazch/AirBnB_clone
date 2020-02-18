@@ -3,10 +3,22 @@
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
+from models.place import Place
 from models import storage
 import sys
 
-list_classes = ["BaseModel", "User"]
+list_classes = ["BaseModel",
+                "User",
+                "State",
+                "City",
+                "Amenity",
+                "Review",
+                "Place"]
+
 
 class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
@@ -32,8 +44,10 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         else:
             print("** class doesn't exist **")
+
     def do_all(self, arg):
-        """Prints all string representation of all instances based or not on the class name."""
+        """Prints all string representation
+        of all instances based or not on the class name."""
         objs = storage.all()
         args = arg.split(" ")
         list_out = []
@@ -56,7 +70,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif args[0] in list_classes:
             if len(args) == 2:
-                name_id =  args[0] + "." + str(args[1])
+                name_id = args[0] + "." + str(args[1])
                 objs = storage.all()
                 if name_id in objs.keys():
                     del(objs[name_id])
@@ -69,7 +83,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel and prints the id. Example:\n(hbnb) create BaseModel\n """
+        """Creates a new instance of BaseModel
+        and prints the id. Example:\n(hbnb) create BaseModel\n """
         args = arg.split(" ")
         if len(arg) == 0:
             print("** class name missing **")
@@ -82,7 +97,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, arg=""):
-        """Prints the string representation of an instance based on the class name and id"""
+        """Prints the string representation
+        of an instance based on the class name and id"""
         args = arg.split(" ")
         if len(arg) == 0:
             print("** class name missing **")
@@ -100,7 +116,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-
     def do_quit(self, arg):
         """Quit command to exit the program \n"""
         storage.all().clear()
@@ -113,5 +128,5 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     prompt = HBNBCommand()
-    prompt.prompt = '(hbnb)'
+    prompt.prompt = '(hbnb) '
     prompt.cmdloop('Starting prompt...')
