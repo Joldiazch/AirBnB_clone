@@ -2,11 +2,11 @@
 """ import cmd module, BaseModel and storage """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
-
+import sys
 
 class HBNBCommand(cmd.Cmd):
-
     def do_update(self, arg):
         objs = storage.all()
         args = arg.split(" ")
@@ -70,10 +70,15 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of BaseModel and prints the id. Example:\n(hbnb) create BaseModel\n """
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg == "BaseModel":
-            obj = BaseModel()
-            obj.save()
-            print(getattr(obj, 'id'))
+        elif arg in ["BaseModel", "User"]:
+            if (arg == "BaseModel"):
+                obj = BaseModel()
+                storage.save()
+                print(getattr(obj, 'id'))
+            elif (arg == "User"):
+                obj = User()
+                storage.save()
+                print(getattr(obj, 'id'))
         else:
             print("** class doesn't exist **")
 
@@ -82,9 +87,9 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split(" ")
         if len(arg) == 0:
             print("** class name missing **")
-        elif args[0] == "BaseModel":
-            if len(args) == 2:
-                name_id = "BaseModel." + str(args[1])
+        elif args[0] in ["BaseModel", "User"]:
+            if len(args) >= 2:
+                name_id = args[0] + "." + str(args[1])
                 objs = storage.all()
                 if name_id in objs.keys():
                     obj = objs[name_id]
@@ -99,7 +104,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """Quit command to exit the program \n"""
-        raise SystemExit
+        storage.all().clear()
+        sys.exit(1)
 
     def do_EOF(self, arg):
         """ EOF SystemExiit """
