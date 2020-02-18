@@ -6,17 +6,19 @@ from models.user import User
 from models import storage
 import sys
 
+list_classes = ["BaseModel", "User"]
+
 class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
         objs = storage.all()
         args = arg.split(" ")
         if len(arg) == 0:
             print("** class name missing **")
-        elif args[0] == "BaseModel":
+        elif args[0] in list_classes:
             if len(args) < 2:
                 print("** instance id missing **")
             elif args[1] in [name_id.split(".")[1] for name_id in objs.keys()]:
-                name_id = "BaseModel." + args[1]
+                name_id = args[0] + "." + args[1]
                 obj = objs[name_id]
                 if len(args) < 3:
                     print("** attribute name missing **")
@@ -39,9 +41,9 @@ class HBNBCommand(cmd.Cmd):
             for obj in objs.values():
                 list_out.append(str(obj))
             print(list_out)
-        elif args[0] == "BaseModel":
+        elif args[0] in list_classes:
             for name_id in objs.keys():
-                if name_id.split(".")[0] == "BaseModel":
+                if name_id.split(".")[0] == args[0]:
                     list_out.append(str(objs[name_id]))
             print(list_out)
         else:
@@ -52,9 +54,9 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split(" ")
         if len(arg) == 0:
             print("** class name missing **")
-        elif args[0] == "BaseModel":
+        elif args[0] in list_classes:
             if len(args) == 2:
-                name_id = "BaseModel." + str(args[1])
+                name_id =  args[0] + "." + str(args[1])
                 objs = storage.all()
                 if name_id in objs.keys():
                     del(objs[name_id])
@@ -68,17 +70,14 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel and prints the id. Example:\n(hbnb) create BaseModel\n """
+        args = arg.split(" ")
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg in ["BaseModel", "User"]:
-            if (arg == "BaseModel"):
-                obj = BaseModel()
-                storage.save()
-                print(getattr(obj, 'id'))
-            elif (arg == "User"):
-                obj = User()
-                storage.save()
-                print(getattr(obj, 'id'))
+        elif args[0] in list_classes:
+            obj = eval(args[0] + "()")
+            id = getattr(obj, 'id')
+            storage.save()
+            print(id)
         else:
             print("** class doesn't exist **")
 
