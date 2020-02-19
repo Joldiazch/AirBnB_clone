@@ -107,7 +107,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split(" ")
         if len(arg) == 0:
             print("** class name missing **")
-        elif args[0] in ["BaseModel", "User"]:
+        elif args[0] in list_classes:
             if len(args) >= 2:
                 name_id = args[0] + "." + str(args[1])
                 objs = storage.all()
