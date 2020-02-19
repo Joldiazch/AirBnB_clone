@@ -172,5 +172,29 @@ class TestFileStorage_methods(unittest.TestCase):
             models.storage.reload(None)
 
 
+class TestFileStorage(unittest.TestCase):
+    '''this will test the FileStorage'''
+
+    @classmethod
+    def setUpClass(cls):
+        """set up for test"""
+        cls.user = User()
+        cls.user.first_name = "Kev"
+        cls.user.last_name = "Yo"
+        cls.user.email = "1234@yahoo.com"
+        cls.storage = FileStorage()
+        cls.path = "file.json"
+
+    @classmethod
+    def teardown(cls):
+        """at the end of the test this will tear it down"""
+        del cls.user
+        """ if delete the file """
+        if os.path.exists("file.json"):
+            os.remove("file.json")
+
+    def tearDown(self):
+        """teardown"""
+
 if __name__ == "__main__":
     unittest.main()
