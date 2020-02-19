@@ -152,6 +152,13 @@ class HBNBCommand(cmd.Cmd):
                     my_id = command.split("(")[1].strip(')"')
                     concat = class_name + " " + my_id
                     self.do_destroy(concat)
+                elif "update" in command:
+                    cn = class_name
+                    my_id = command.split("(")[1].split(", ")[0].strip(')"')
+                    n_at = command.split("(")[1].split(", ")[1].strip(')"')
+                    v_at = command.split("(")[1].split(", ")[2].strip(')"')
+                    concat = cn + " " + my_id + " " + n_at + " " + v_at
+                    self.do_update(concat)
 
     def count(self, class_name):
         objs = storage.all()
