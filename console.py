@@ -89,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel
-        and prints the id. Example:\n(hbnb) create BaseModel\n """
+        and prints the id. Example:(hbnb) create BaseModel\n """
         args = arg.split(" ")
         if len(arg) == 0:
             print("** class name missing **")
@@ -129,6 +129,9 @@ class HBNBCommand(cmd.Cmd):
         """ EOF SystemExiit """
         print("")
         return True
+
+    def emptyline(self):
+        pass
 
 
 if __name__ == '__main__':
