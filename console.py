@@ -133,6 +133,23 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         pass
 
+    def default(self, line):
+        words = line.split(".")
+        command = words[1]
+        class_name =  words[0]
+        if class_name in list_classes and command in ['all()', 'count()']:
+            if command == "all()":
+                self.do_all(class_name)
+            elif command == "count()":
+                self.count(class_name)
+
+    def count(self, class_name):
+        objs = storage.all()
+        num_objs = 0
+        for name_id in objs.keys():
+            if name_id.split(".")[0] == class_name:
+                num_objs += 1
+        print(num_objs)
 
 if __name__ == '__main__':
     prompt = HBNBCommand()
