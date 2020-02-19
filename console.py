@@ -22,6 +22,8 @@ list_classes = ["BaseModel",
 
 class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
+        """Updates an instance based on the class
+        name and id by adding or updating attribute"""
         objs = storage.all()
         args = arg.split(" ")
         if len(arg) == 0:
@@ -38,7 +40,10 @@ class HBNBCommand(cmd.Cmd):
                     if len(args) < 4:
                         print("** value missing **")
                     else:
-                        setattr(obj, args[2], args[3].strip('"'))
+                        try:
+                            setattr(obj, args[2], eval(args[3]))
+                        except:
+                            setattr(obj, args[2], args[3].strip('"'))
                         storage.save()
             else:
                 print("** no instance found **")
