@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line):
         words = line.split(".")
-        class_name =  words[0]
+        class_name = words[0]
         if class_name in list_classes and len(words) > 1:
             command = words[1]
             if command in ['all()', 'count()']:
@@ -143,6 +143,11 @@ class HBNBCommand(cmd.Cmd):
                     self.do_all(class_name)
                 elif command == "count()":
                     self.count(class_name)
+            else:
+                if "show" in command:
+                    my_id = command.split("(")[1].strip(")")
+                    concat = class_name + " " + my_id
+                    self.do_show(concat)
 
     def count(self, class_name):
         objs = storage.all()
