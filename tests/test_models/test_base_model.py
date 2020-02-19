@@ -95,7 +95,6 @@ class TestBaseModel(unittest.TestCase):
     def test_checking_for_docstring_BaseModel(self):
         """checking for docstrings"""
         self.assertIsNotNone(BaseModel.__doc__)
-        self.assertIsNotNone(BaseModel.__init__.__doc__)
         self.assertIsNotNone(BaseModel.__str__.__doc__)
         self.assertIsNotNone(BaseModel.save.__doc__)
         self.assertIsNotNone(BaseModel.to_dict.__doc__)
