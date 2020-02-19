@@ -148,6 +148,10 @@ class HBNBCommand(cmd.Cmd):
                     my_id = command.split("(")[1].strip(")")
                     concat = class_name + " " + my_id
                     self.do_show(concat)
+                elif "destroy" in command:
+                    my_id = command.split("(")[1].strip(')"')
+                    concat = class_name + " " + my_id
+                    self.do_destroy(concat)
 
     def count(self, class_name):
         objs = storage.all()
