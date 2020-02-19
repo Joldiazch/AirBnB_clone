@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
                         print("** value missing **")
                     else:
                         try:
-                            setattr(obj, args[2], eval(args[3]))
+                            setattr(obj, args[2], eval(args[3].strip('"')))
                         except:
                             setattr(obj, args[2], args[3].strip('"'))
                         storage.save()
