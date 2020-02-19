@@ -20,6 +20,7 @@ from models.amenity import Amenity
 from models.review import Review
 import pep8
 
+
 class TestFileStorage_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the FileStorage class."""
 
