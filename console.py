@@ -123,7 +123,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """Quit command to exit the program \n"""
-        storage.all().clear()
         sys.exit(1)
 
     def do_EOF(self, arg):
@@ -135,4 +134,4 @@ class HBNBCommand(cmd.Cmd):
 if __name__ == '__main__':
     prompt = HBNBCommand()
     prompt.prompt = '(hbnb) '
-    prompt.cmdloop('Starting prompt...')
+    prompt.cmdloop()
