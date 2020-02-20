@@ -155,7 +155,7 @@ class HBNBCommand(cmd.Cmd):
                     self.do_destroy(concat)
                 elif "update" in command:
                     cn = class_name
-                    if not "{" in command.split("(")[1]:
+                    if "{" not in command.split("(")[1]:
                         myd = command.split("(")[1].split(", ")[0].strip(')"')
                         n_at = command.split("(")[1].split(", ")[1].strip(')"')
                         v_at = command.split("(")[1].split(", ")[2].strip(')"')
