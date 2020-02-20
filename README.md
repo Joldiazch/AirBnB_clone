@@ -23,7 +23,7 @@ The project currently only implements the back-end console.
 | **PRIVATE CLASS ATTRIBUTES** | | `file_path`<br>`objects` | | | | | | |
 
 ---
-### General
+## General
 Concepts to learn in this project:
 
 - How to create a Python package
@@ -98,6 +98,67 @@ $
 ```
 
 ## Examples
+Starting with no objects, we will create a BaseModel instance, update it with the key-value pair `first_name: "Juan_Jose"`, and then prove our instance has changed.
+```
+(hbnb) all
+[]
+(hbnb) create BaseModel
+bafb7c4f-6415-4e93-801e-50bf68a18f3c
+(hbnb) show BaseModel bafb7c4f-6415-4e93-801e-50bf68a18f3c
+[BaseModel] (bafb7c4f-6415-4e93-801e-50bf68a18f3c) {'id': 'bafb7c4f-6415-4e93-801e-50bf68a18f3c', 'created_at': datetime.datetime(2020, 2, 19, 19, 8, 9, 799299), 'updated_at': datetime.datetime(2020, 2, 19, 19, 8, 9, 799299)}
+(hbnb) update BaseModel bafb7c4f-6415-4e93-801e-50bf68a18f3c first_name "Juan_Jose"
+(hbnb) show BaseModel bafb7c4f-6415-4e93-801e-50bf68a18f3c
+[BaseModel] (bafb7c4f-6415-4e93-801e-50bf68a18f3c) {'id': 'bafb7c4f-6415-4e93-801e-50bf68a18f3c', 'created_at': datetime.datetime(2020, 2, 19, 19, 8, 9, 799299), 'updated_at': datetime.datetime(2020, 2, 19, 19, 8, 9, 799299), 'first_name': 'Juan_Jose'}
+(hbnb)
+```
+* Now let's create a few more objects to demonstrate how all, count, and destroy work.
+```
+(hbnb) create BaseModel
+d98de563-89c7-4dc3-9f46-e087911813f6
+(hbnb) create User
+a83cba86-f7ce-470f-89f8-85af656bc6df
+(hbnb) count BaseModel
+2
+(hbnb) count User
+1
+(hbnb) count City
+0
+(hbnb) all BaseModel
+["[BaseModel] (bca8ad60-bf0e-4d4f-9264-24944d8c6672) {'created_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43214), 'updated_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43241), 'id': 'bca8ad60-bf0e-4d4f-9264-24944d8c6672', 'first_name': 'Betty'}", "[BaseModel] (d98de563-89c7-4dc3-9f46-e087911813f6) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668384), 'id': 'd98de563-89c7-4dc3-9f46-e087911813f6', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668408)}"]
+(hbnb) all
+["[BaseModel] (bca8ad60-bf0e-4d4f-9264-24944d8c6672) {'created_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43214), 'updated_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43241), 'id': 'bca8ad60-bf0e-4d4f-9264-24944d8c6672', 'first_name': 'Betty'}", "[BaseModel] (d98de563-89c7-4dc3-9f46-e087911813f6) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668384), 'id': 'd98de563-89c7-4dc3-9f46-e087911813f6', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668408)}", "[User] (a83cba86-f7ce-470f-89f8-85af656bc6df) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112270), 'id': 'a83cba86-f7ce-470f-89f8-85af656bc6df', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112295)}"]
+(hbnb) destroy BaseModel d98de563-89c7-4dc3-9f46-e087911813f6
+(hbnb) count BaseModel
+1
+(hbnb)
+```
+* In addition, all of our commands (except for create) work with Object method notation as such:
+```
+(hbnb) BaseModel.count()
+1
+(hbnb) User.all()
+["[User] (cbde29bc-7dbb-45d5-b6b3-54afaf953cb3) {'created_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362051), 'updated_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362076), 'id': 'cbde29bc-7dbb-45d5-b6b3-54afaf953cb3', "[User] (a83cba86-f7ce-470f-89f8-85af656bc6df) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112270), 'id': 'a83cba86-f7ce-470f-89f8-85af656bc6df', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112295)}"]
+(hbnb) User.update("cbde29bc-7dbb-45d5-b6b3-54afaf953cb3", "gender", "Male")
+(hbnb) User.show("cbde29bc-7dbb-45d5-b6b3-54afaf953cb3")
+[User] (cbde29bc-7dbb-45d5-b6b3-54afaf953cb3) {'created_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362051), 'updated_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362076), 'id': 'cbde29bc-7dbb-45d5-b6b3-54afaf953cb3', 'gender': 'Male'}
+(hbnb) User.count()
+2
+(hbnb) User.destroy("cbde29bc-7dbb-45d5-b6b3-54afaf953cb3")
+(hbnb) User.count()
+1
+```
+* Update from dictionary: to update an instance based on his ID with a dictionary: <class name>.update(<id>, <dictionary representation>).
+```
+(hbnb) User.show("38f22813-2753-4d42-b37c-57a17f1e4f88")
+[User] (38f22813-2753-4d42-b37c-57a17f1e4f88) {'age': 23, 'first_name': 'Bob', 'last_name': 'Holberton', 'created_at': datetime.datetime(2017, 9, 28, 21, 11, 42, 848279), 'updated_at': datetime.datetime(2017, 9, 28, 21, 15, 32, 299055), 'password': 'b9be11166d72e9e3ae7fd407165e4bd2', 'email': 'airbnb@holbertonshool.com', 'id': '38f22813-2753-4d42-b37c-57a17f1e4f88'}
+(hbnb)
+(hbnb) User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", {'first_name': "John", "age": 89})
+(hbnb)
+(hbnb) User.show("38f22813-2753-4d42-b37c-57a17f1e4f88")
+[User] (38f22813-2753-4d42-b37c-57a17f1e4f88) {'age': 89, 'first_name': 'John', 'last_name': 'Holberton', 'created_at': datetime.datetime(2017, 9, 28, 21, 11, 42, 848279), 'updated_at': datetime.datetime(2017, 9, 28, 21, 17, 10, 788143), 'password': 'b9be11166d72e9e3ae7fd407165e4bd2', 'email': 'airbnb@holbertonshool.com', 'id': '38f22813-2753-4d42-b37c-57a17f1e4f88'}
+(hbnb)
+```
+
 
 ## Task Project
 ---
@@ -111,6 +172,15 @@ models/base_model.py, tests/|4. Create BaseModel from dictionary|Now it’s time
 models/engine/file_storage.py, models/engine/__init__.py, models/__init__.py, models/base_model.py, tests/|5. Store first object|recreate a BaseModel from another one by using a dictionary representation
 console.py|6. Console 0.0.1|contains the entry point of the command interpreter cmd
 console.py|7. Console 0.1|Update your command interpreter with someone commands: create, show, destroy, all and update
+models/user.py, models/engine/file_storage.py, console.py, tests/|8. First User|Write a class User that inherits from BaseModel
+models/state.py, models/city.py, models/amenity.py, models/place.py, models/review.py, tests/|9. More classes!|Write all those classes that inherit from BaseModel: State, City, Amenity, Place, Review
+console.py, models/engine/file_storage.py, tests/|10. Console 1.0|Update FileStorage to manage correctly serialization and deserialization and Update your command interpreter (console.py)
+console.py|11. All instances by class name|Update your command interpreter (console.py) to retrieve all instances of a class by using: <class name>.all().
+console.py|12. Count instances|Update your command interpreter (console.py) to retrieve the number of instances of a class: <class name>.count().
+console.py|13. Show|Update your command interpreter (console.py) to retrieve an instance based on its ID: <class name>.show(<id>)
+console.py|14. Destroy|Update your command interpreter (console.py) to destroy an instance based on his ID: <class name>.destroy(<id>)
+console.py|15. Update|Update your command interpreter (console.py) to update an instance based on his ID: <class name>.update(<id>, <attribute name>, <attribute value>)
+console.py|16. Update from dictionary|Update your command interpreter (console.py) to update an instance based on his ID with a dictionary: <class name>.update(<id>, <dictionary representation>).
 
 
 ## Author
