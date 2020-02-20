@@ -155,17 +155,18 @@ class HBNBCommand(cmd.Cmd):
                     self.do_destroy(concat)
                 elif "update" in command:
                     cn = class_name
-                    if len(command.split("(")[1].split(", {")) > 2:
-                        my_id = command.split("(")[1].split(", ")[0].strip(')"')
+                    if not "{" in command.split("(")[1]:
+                        myd = command.split("(")[1].split(", ")[0].strip(')"')
                         n_at = command.split("(")[1].split(", ")[1].strip(')"')
                         v_at = command.split("(")[1].split(", ")[2].strip(')"')
-                        concat = cn + " " + my_id + " " + n_at + " " + v_at
+                        concat = cn + " " + myd + " " + n_at + " " + v_at
                         self.do_update(concat)
                     elif len(command.split("(")[1].split(", {")) == 2:
-                        my_id = command.split("(")[1].split(", {")[0].strip(')"')
-                        dic = eval("{" + command.split("(")[1].split(", {")[1].strip(")"))
+                        md = command.split("(")[1].split(", {")[0].strip(')"')
+                        s = command.split("(")[1].split(", {")[1].strip(")")
+                        dic = eval("{" + s)
                         for atr, val in dic.items():
-                            concat = cn + " " + my_id + " " + atr + " " + str(val)
+                            concat = cn + " " + md + " " + atr + " " + str(val)
                             self.do_update(concat)
 
     def count(self, class_name):
