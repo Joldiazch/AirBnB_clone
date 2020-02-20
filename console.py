@@ -10,6 +10,7 @@ from models.review import Review
 from models.place import Place
 from models import storage
 import sys
+import json
 
 list_classes = ["BaseModel",
                 "User",
@@ -154,11 +155,18 @@ class HBNBCommand(cmd.Cmd):
                     self.do_destroy(concat)
                 elif "update" in command:
                     cn = class_name
-                    my_id = command.split("(")[1].split(", ")[0].strip(')"')
-                    n_at = command.split("(")[1].split(", ")[1].strip(')"')
-                    v_at = command.split("(")[1].split(", ")[2].strip(')"')
-                    concat = cn + " " + my_id + " " + n_at + " " + v_at
-                    self.do_update(concat)
+                    if len(command.split("(")[1].split(", {")) > 2:
+                        my_id = command.split("(")[1].split(", ")[0].strip(')"')
+                        n_at = command.split("(")[1].split(", ")[1].strip(')"')
+                        v_at = command.split("(")[1].split(", ")[2].strip(')"')
+                        concat = cn + " " + my_id + " " + n_at + " " + v_at
+                        self.do_update(concat)
+                    elif len(command.split("(")[1].split(", {")) == 2:
+                        my_id = command.split("(")[1].split(", {")[0].strip(')"')
+                        dic = eval("{" + command.split("(")[1].split(", {")[1].strip(")"))
+                        for atr, val in dic.items():
+                            concat = cn + " " + my_id + " " + atr + " " + str(val)
+                            self.do_update(concat)
 
     def count(self, class_name):
         objs = storage.all()
