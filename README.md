@@ -114,21 +114,23 @@ bafb7c4f-6415-4e93-801e-50bf68a18f3c
 * Now let's create a few more objects to demonstrate how all, count, and destroy work.
 ```
 (hbnb) create BaseModel
-d98de563-89c7-4dc3-9f46-e087911813f6
+20c95faf-93ca-4086-a895-0e5a10ac1db4
+(hbnb) create BaseModel
+0c871bea-c64b-43ae-8845-ac6b8e83b1f4
 (hbnb) create User
-a83cba86-f7ce-470f-89f8-85af656bc6df
-(hbnb) count BaseModel
+07848520-1ba0-4407-a757-4d1f749f338f
+(hbnb) BaseModel.count()
 2
-(hbnb) count User
+(hbnb) User.count()
 1
-(hbnb) count City
+(hbnb) City.count()
 0
 (hbnb) all BaseModel
-["[BaseModel] (bca8ad60-bf0e-4d4f-9264-24944d8c6672) {'created_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43214), 'updated_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43241), 'id': 'bca8ad60-bf0e-4d4f-9264-24944d8c6672', 'first_name': 'Betty'}", "[BaseModel] (d98de563-89c7-4dc3-9f46-e087911813f6) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668384), 'id': 'd98de563-89c7-4dc3-9f46-e087911813f6', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668408)}"]
+["[BaseModel] (20c95faf-93ca-4086-a895-0e5a10ac1db4) {'id': '20c95faf-93ca-4086-a895-0e5a10ac1db4', 'created_at': datetime.datetime(2020, 2, 21, 11, 19, 50, 28769), 'updated_at': datetime.datetime(2020, 2, 21, 11, 19, 50, 28769)}", "[BaseModel] (0c871bea-c64b-43ae-8845-ac6b8e83b1f4) {'id': '0c871bea-c64b-43ae-8845-ac6b8e83b1f4', 'created_at': datetime.datetime(2020, 2, 21, 11, 19, 56, 744390), 'updated_at': datetime.datetime(2020, 2, 21, 11, 19, 56, 744390)}"]
 (hbnb) all
-["[BaseModel] (bca8ad60-bf0e-4d4f-9264-24944d8c6672) {'created_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43214), 'updated_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43241), 'id': 'bca8ad60-bf0e-4d4f-9264-24944d8c6672', 'first_name': 'Betty'}", "[BaseModel] (d98de563-89c7-4dc3-9f46-e087911813f6) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668384), 'id': 'd98de563-89c7-4dc3-9f46-e087911813f6', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668408)}", "[User] (a83cba86-f7ce-470f-89f8-85af656bc6df) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112270), 'id': 'a83cba86-f7ce-470f-89f8-85af656bc6df', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112295)}"]
-(hbnb) destroy BaseModel d98de563-89c7-4dc3-9f46-e087911813f6
-(hbnb) count BaseModel
+["[BaseModel] (20c95faf-93ca-4086-a895-0e5a10ac1db4) {'id': '20c95faf-93ca-4086-a895-0e5a10ac1db4', 'created_at': datetime.datetime(2020, 2, 21, 11, 19, 50, 28769), 'updated_at': datetime.datetime(2020, 2, 21, 11, 19, 50, 28769)}", "[BaseModel] (0c871bea-c64b-43ae-8845-ac6b8e83b1f4) {'id': '0c871bea-c64b-43ae-8845-ac6b8e83b1f4', 'created_at': datetime.datetime(2020, 2, 21, 11, 19, 56, 744390), 'updated_at': datetime.datetime(2020, 2, 21, 11, 19, 56, 744390)}", "[User] (07848520-1ba0-4407-a757-4d1f749f338f) {'id': '07848520-1ba0-4407-a757-4d1f749f338f', 'created_at': datetime.datetime(2020, 2, 21, 11, 20, 4, 827315), 'updated_at': datetime.datetime(2020, 2, 21, 11, 20, 4, 827315)}"]
+(hbnb) BaseModel.destroy(20c95faf-93ca-4086-a895-0e5a10ac1db4)
+(hbnb) BaseModel.count()
 1
 (hbnb)
 ```
@@ -137,10 +139,10 @@ a83cba86-f7ce-470f-89f8-85af656bc6df
 (hbnb) BaseModel.count()
 1
 (hbnb) User.all()
-["[User] (cbde29bc-7dbb-45d5-b6b3-54afaf953cb3) {'created_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362051), 'updated_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362076), 'id': 'cbde29bc-7dbb-45d5-b6b3-54afaf953cb3', "[User] (a83cba86-f7ce-470f-89f8-85af656bc6df) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112270), 'id': 'a83cba86-f7ce-470f-89f8-85af656bc6df', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112295)}"]
+["[User] (cbde29bc-7dbb-45d5-b6b3-54afaf953cb3) {'created_at': datetime.datetime(2020, 2, 21, 18, 54, 20, 362051), 'updated_at': datetime.datetime(2020, 2, 21, 18, 54, 20, 362076), 'id': 'cbde29bc-7dbb-45d5-b6b3-54afaf953cb3', "[User] (a83cba86-f7ce-470f-89f8-85af656bc6df) {'created_at': datetime.datetime(2020, 2, 21, 18, 50, 49, 112270), 'id': 'a83cba86-f7ce-470f-89f8-85af656bc6df', 'updated_at': datetime.datetime(2020, 2, 21, 18, 50, 49, 112295)}"]
 (hbnb) User.update("cbde29bc-7dbb-45d5-b6b3-54afaf953cb3", "gender", "Male")
 (hbnb) User.show("cbde29bc-7dbb-45d5-b6b3-54afaf953cb3")
-[User] (cbde29bc-7dbb-45d5-b6b3-54afaf953cb3) {'created_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362051), 'updated_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362076), 'id': 'cbde29bc-7dbb-45d5-b6b3-54afaf953cb3', 'gender': 'Male'}
+[User] (cbde29bc-7dbb-45d5-b6b3-54afaf953cb3) {'created_at': datetime.datetime(2020, 2, 21, 18, 54, 20, 362051), 'updated_at': datetime.datetime(2020, 2, 21, 18, 54, 20, 362076), 'id': 'cbde29bc-7dbb-45d5-b6b3-54afaf953cb3', 'gender': 'Male'}
 (hbnb) User.count()
 2
 (hbnb) User.destroy("cbde29bc-7dbb-45d5-b6b3-54afaf953cb3")
@@ -150,12 +152,12 @@ a83cba86-f7ce-470f-89f8-85af656bc6df
 * Update from dictionary: to update an instance based on his ID with a dictionary: <class name>.update(<id>, <dictionary representation>).
 ```
 (hbnb) User.show("38f22813-2753-4d42-b37c-57a17f1e4f88")
-[User] (38f22813-2753-4d42-b37c-57a17f1e4f88) {'age': 23, 'first_name': 'Bob', 'last_name': 'Holberton', 'created_at': datetime.datetime(2017, 9, 28, 21, 11, 42, 848279), 'updated_at': datetime.datetime(2017, 9, 28, 21, 15, 32, 299055), 'password': 'b9be11166d72e9e3ae7fd407165e4bd2', 'email': 'airbnb@holbertonshool.com', 'id': '38f22813-2753-4d42-b37c-57a17f1e4f88'}
+[User] (38f22813-2753-4d42-b37c-57a17f1e4f88) {'age': 23, 'first_name': 'Bob', 'last_name': 'Holberton', 'created_at': datetime.datetime(2020, 2, 21, 21, 11, 42, 848279), 'updated_at': datetime.datetime(2020, 2, 21, 21, 15, 32, 299055), 'password': 'b9be11166d72e9e3ae7fd407165e4bd2', 'email': 'airbnb@holbertonshool.com', 'id': '38f22813-2753-4d42-b37c-57a17f1e4f88'}
 (hbnb)
 (hbnb) User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", {'first_name': "John", "age": 89})
 (hbnb)
 (hbnb) User.show("38f22813-2753-4d42-b37c-57a17f1e4f88")
-[User] (38f22813-2753-4d42-b37c-57a17f1e4f88) {'age': 89, 'first_name': 'John', 'last_name': 'Holberton', 'created_at': datetime.datetime(2017, 9, 28, 21, 11, 42, 848279), 'updated_at': datetime.datetime(2017, 9, 28, 21, 17, 10, 788143), 'password': 'b9be11166d72e9e3ae7fd407165e4bd2', 'email': 'airbnb@holbertonshool.com', 'id': '38f22813-2753-4d42-b37c-57a17f1e4f88'}
+[User] (38f22813-2753-4d42-b37c-57a17f1e4f88) {'age': 89, 'first_name': 'John', 'last_name': 'Holberton', 'created_at': datetime.datetime(2020, 2, 21, 21, 11, 42, 848279), 'updated_at': datetime.datetime(2020, 2, 21, 21, 17, 10, 788143), 'password': 'b9be11166d72e9e3ae7fd407165e4bd2', 'email': 'airbnb@holbertonshool.com', 'id': '38f22813-2753-4d42-b37c-57a17f1e4f88'}
 (hbnb)
 ```
 
